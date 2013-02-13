@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "X$1" == "X" ]
+then
+	PICTURE="/var/www/pic.jpg"
+else
+	PICTURE=$1
+fi
+fswebcam -F 3 --no-banner -S 5 $PICTURE

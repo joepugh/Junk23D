@@ -1,0 +1,2 @@
+DEVICE=`ls /dev/tty* | grep 'USB\|ACM' | head -n 1`
+echo $@ > $DEVICE

@@ -1,0 +1,21 @@
+#!/bin/bash
+touch /tmp/scan
+DATE=`date +%Y-%m-%d-%H-%M`
+mkdir /var/www/scans/$DATE
+send r
+for i in {1..120}
+do
+	NUMBER=`printf %03d $i`
+	send n
+	sleep 1
+	send f
+	takepic /var/www/scans/$DATE/$NUMBER.jpg
+	rm /var/www/pic.jpg
+	ln -s /var/www/scans/$DATE/$NUMBER.jpg /var/www/pic.jpg
+	sleep 2
+done
+rm /var/www/pic.jpg
+cp /var/www/scans/$DATE/$NUMBER.jpg /var/www/pic.jpg
+chown www-data /var/www/pic.jpg
+convert -delay 5 -loop 0 `find /var/www/scans/$DATE/ | grep jpg | sort` /var/www/scans/$DATE/$DATE.gif
+rm /tmp/scan

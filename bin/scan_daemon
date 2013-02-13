@@ -1,0 +1,14 @@
+while [ 1 ]
+do
+if [ -e /tmp/scan_nolaser ] 
+then
+	scan_nolaser
+	rm /tmp/scan_nolaser
+fi
+if [ -e /tmp/scan_laser ] 
+then
+	scan_laser
+	rm /tmp/scan_laser
+fi
+sleep 3
+done
